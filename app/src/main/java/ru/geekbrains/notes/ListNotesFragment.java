@@ -22,6 +22,7 @@ import java.util.List;
 
 public class ListNotesFragment extends Fragment {
     int currentPosition = -1;
+    private AllNotes allNotes;
 
 
 
@@ -49,30 +50,20 @@ public class ListNotesFragment extends Fragment {
         initView(view);
     }
 
-    private void initView(View view) {
+    public void initView(View view) {
         LinearLayout linearLayout = view.findViewById(R.id.note_container);
-        Note note1 = new Note("1 note","Text 1 note's","06.11.2021");
-        Note note2 = new Note("2 note","Text 2 note's","07.11.2021");
-        Note note3 = new Note("3 note","Text 3 note's","08.11.2021");
-        Note note4 = new Note("4 note","Text 4 note's","09.11.2021");
 
-        Note[] notes = new Note[4];
-        notes[0] = note1;
-        notes[1] = note2;
-        notes[2] = note3;
-        notes[3] = note4;
-
-        AllNotes allNotes = new AllNotes(4);
+        allNotes = new AllNotes(4);
         allNotes.addNote("1 заметка", "Текст первой заметки", "22.12.2048");
         allNotes.addNote("2 заметка", "Текст второй заметки", "23.12.2048");
         allNotes.addNote("3 заметка", "Текст третьей заметки", "25.12.2048");
         allNotes.addNote("4 заметка", "Текст четвертой заметки", "26.12.2048");
 
         List<Note> supportList = allNotes.getNotesList();
-        supportList.get(1);
 
-        for (int i = 0; i < notes.length; i++) {
-            Note note = notes[i];
+
+        for (int i = 0; i < allNotes.getSize(); i++) {
+            Note note = supportList.get(i);
             TextView textView = new TextView(getContext());
 
             textView.setText(note.getNameNote());
@@ -92,6 +83,11 @@ public class ListNotesFragment extends Fragment {
         }
 
 
+
+    }
+
+    public AllNotes getAllNotes() {
+        return allNotes;
     }
 
     void updateBackground() {
