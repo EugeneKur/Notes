@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,6 +50,25 @@ public class ListNotesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         initView(view);
+
+        Button buttonBack = view.findViewById(R.id.button_option);
+        buttonBack.setOnClickListener(v -> {
+            OptoinsFragment optoinsFragment = OptoinsFragment.newInstance("","");
+            if (isLand()) {
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fragment_container2, optoinsFragment)
+                        .addToBackStack(null)
+                        .commit();
+            } else {
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fragment_container1, optoinsFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+
+        });
     }
 
     public void initView(View view) {
@@ -82,6 +102,8 @@ public class ListNotesFragment extends Fragment {
             });
             linearLayout.addView(textView);
         }
+
+
 
 
 

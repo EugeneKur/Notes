@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="optionTextViewWidth">0dp</dimen>
+    <dimen name="optionTextSize">12pt</dimen>
+</resources>
