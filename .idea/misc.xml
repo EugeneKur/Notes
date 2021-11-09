@@ -5,8 +5,10 @@
       <map>
         <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout-land/activity_main.xml" value="0.152" />
         <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout/fragment_list_notes.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout/fragment_text_notes.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout/fragment_child_text.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout/fragment_list_notes.xml" value="0.2" />
+        <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout/fragment_optoins.xml" value="0.176" />
+        <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout/fragment_text_notes.xml" value="0.2" />
       </map>
     </option>
   </component>

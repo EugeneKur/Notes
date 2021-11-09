@@ -1,18 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF5530"
     android:layout_margin="2pt"
     android:clickable="true"
+    android:orientation="vertical"
     tools:context=".TextNotesFragment">
-
-    <TextView
-        android:id="@+id/textNotes"
-        android:textSize="30sp"
+    <LinearLayout
+        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/nameNote"
+            android:background="#558855"
+            android:textSize="30sp"
+            android:layout_margin="1pt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            />
+        <TextView
+            android:id="@+id/dateNote"
+            android:background="#558855"
+            android:textSize="20sp"
+            android:layout_margin="1pt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            />
+    </LinearLayout>
 
-</FrameLayout>
+
+<LinearLayout
+    android:layout_weight="1"
+    android:id="@+id/container_child"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/purple_200"
+    android:orientation="horizontal">
+
+</LinearLayout>
+
+</LinearLayout>
