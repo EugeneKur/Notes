@@ -26,6 +26,7 @@ public class ListNotesFragment extends Fragment {
 
 
 
+
     public ListNotesFragment() {
         // Required empty public constructor
     }
@@ -74,7 +75,7 @@ public class ListNotesFragment extends Fragment {
 
             textView.setOnClickListener(v -> {
                 currentPosition = position;
-                showText(position);
+                showText(note.getNameNote(), note.getTextNote(), note.getDateNote());
                 updateBackground();
 
 
@@ -103,17 +104,17 @@ public class ListNotesFragment extends Fragment {
     }
 
 
-    void showText(int position) {
+    void showText(String name, String text, String date) {
         if (isLand()) {
-            showTextLand(position);
+            showTextLand(name, text, date);
         } else {
-            showTextPort(position);
+            showTextPort(name, text, date);
         }
 
     }
 
-    void  showTextPort (int position) {
-        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(position);
+    void  showTextPort (String name, String text, String date) {
+        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note(name, text, date));
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container1, textNotesFragment)
@@ -122,8 +123,8 @@ public class ListNotesFragment extends Fragment {
 
     }
 
-    void  showTextLand (int position) {
-        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(position);
+    void  showTextLand (String name, String text, String date) {
+        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note(name, text, date));
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container2, textNotesFragment)
