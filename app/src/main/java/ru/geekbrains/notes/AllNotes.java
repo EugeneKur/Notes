@@ -17,4 +17,8 @@ public class AllNotes {
     public List<Note> getNotesList() {
         return notesList;
     }
+
+    public int getSize() {
+        return notesList.size();
+    }
 }
