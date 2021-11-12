@@ -5,9 +5,13 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -52,8 +56,57 @@ public class TextNotesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_text_notes, container, false);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        MenuItem menuItemSearch = menu.findItem(R.id.action_search);
+        if (menuItemSearch != null) {
+            menuItemSearch.setVisible(false);
+        }
+        MenuItem menuItemLook = menu.findItem(R.id.action_look);
+        if (menuItemLook != null) {
+            menuItemLook.setVisible(false);
+        }
+
+        MenuItem menuItemFontSize = menu.findItem(R.id.action_font_size);
+        if (menuItemFontSize != null) {
+            menuItemFontSize.setVisible(false);
+        }
+
+        MenuItem menuItemFontStyle = menu.findItem(R.id.action_font_style);
+        if (menuItemFontStyle != null) {
+            menuItemFontStyle.setVisible(false);
+        }
+
+        MenuItem menuItemColorApp = menu.findItem(R.id.action_color_app);
+        if (menuItemColorApp != null) {
+            menuItemColorApp.setVisible(false);
+        }
+
+        MenuItem menuItemSort = menu.findItem(R.id.action_sort);
+        if (menuItemSort != null) {
+            menuItemSort.setVisible(false);
+        }
+
+
+        MenuItem menuItemDelete = menu.findItem(R.id.action_delete);
+        if (menuItemDelete != null) {
+            menuItemDelete.setVisible(true);
+        }
+
+        MenuItem menuItemShare = menu.findItem(R.id.action_share);
+        if (menuItemShare != null) {
+            menuItemShare.setVisible(true);
+        }
+
+        MenuItem menuItemRemind = menu.findItem(R.id.action_remind);
+        if (menuItemRemind != null) {
+            menuItemRemind.setVisible(true);
+        }
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override

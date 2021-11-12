@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_about"
+        android:title="О приложении"
+        app:showAsAction="never"
+        android:orderInCategory="15"
+        />
+    <item
+        android:id="@+id/action_look"
+        android:title="Вид"
+        app:showAsAction="never"
+        android:orderInCategory="10"
+        />
+    <item
+        android:id="@+id/action_search"
+        android:title="поиск"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="5"
+        />
+    <item
+        android:id="@+id/action_back"
+        android:title="Закрыть"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="20"
+        />
+    <item
+        android:id="@+id/action_remind"
+        android:title="Напомнить"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="1"
+        />
+    <item
+        android:id="@+id/action_share"
+        android:title="Отправить"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="2"
+        />
+    <item
+        android:id="@+id/action_delete"
+        android:title="Удалить"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="3"
+        />
+    <item
+        android:id="@+id/action_font_style"
+        android:title="Стиль шрифта"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="16"
+        />
+    <item
+        android:id="@+id/action_font_size"
+        android:title="Размер шрифта"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="17"
+        />
+    <item
+        android:id="@+id/action_sort"
+        android:title="Сортировка"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="18"
+        />
+    <item
+        android:id="@+id/action_color_app"
+        android:title="Цветовая схема"
+        app:showAsAction="collapseActionView"
+        android:orderInCategory="19"
+        />
+
+</menu>
