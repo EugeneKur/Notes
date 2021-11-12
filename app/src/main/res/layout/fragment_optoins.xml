@@ -6,6 +6,7 @@
     tools:context=".OptoinsFragment"
     android:orientation="vertical"
     android:layout_margin="2pt"
+    android:clickable="true"
     android:background="#92A283">
 <LinearLayout
     android:layout_width="match_parent"
