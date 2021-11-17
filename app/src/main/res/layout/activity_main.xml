@@ -18,6 +18,7 @@
     android:id="@+id/main_container"
     android:orientation="vertical">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -38,7 +39,11 @@
         android:layout_margin="10pt"
         android:background="#00FFFF"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+
 
 </LinearLayout>
     <com.google.android.material.navigation.NavigationView

@@ -2,13 +2,17 @@ package ru.geekbrains.notes;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private void initToolbar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         final DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -63,7 +68,18 @@ public class MainActivity extends AppCompatActivity {
                     // TODO метод для поиска заметки
                     return true;
                 } else if (id == R.id.action_back) {
-                    finish();
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setCancelable(true)
+                            .setMessage("Вы уверены, что хотитите закрыть?")
+                            .setTitle("Предупреждение!")
+                            .setPositiveButton("Да", (dialog, which) -> {
+                                Toast.makeText(MainActivity.this, "Закрылось", Toast.LENGTH_SHORT).show();
+                                finish();
+                            })
+                            .setNegativeButton("Нет", (dialog, which) -> {
+                                Toast.makeText(MainActivity.this, "Не закрылось", Toast.LENGTH_SHORT).show();
+                            })
+                            .show();
                     return true;
                 } else if (id == R.id.action_font_size) {
                     // TODO метод для выбора размера шрифта
@@ -134,7 +150,18 @@ public class MainActivity extends AppCompatActivity {
             // TODO метод для поиска заметки
             return true;
         } else if (id == R.id.action_back) {
-            finish();
+            new AlertDialog.Builder(this)
+                    .setCancelable(true)
+                    .setMessage("Вы уверены, что хотитите закрыть?")
+                    .setTitle("Предупреждение!")
+                    .setPositiveButton("Да", (dialog, which) -> {
+                        Toast.makeText(this, "Закрылось", Toast.LENGTH_SHORT).show();
+                        finish();
+                    })
+                    .setNegativeButton("Нет", (dialog, which) -> {
+                        Toast.makeText(this, "Не закрылось", Toast.LENGTH_SHORT).show();
+                    })
+                    .show();
             return true;
         } else if (id == R.id.action_font_size) {
             // TODO метод для выбора размера шрифта

@@ -1,5 +1,6 @@
 package ru.geekbrains.notes;
 
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,6 +54,7 @@ public class ListNotesFragment extends Fragment {
 
         initView(view);
 
+
         Button buttonBack = view.findViewById(R.id.button_option);
         buttonBack.setOnClickListener(v -> {
             OptoinsFragment optoinsFragment = OptoinsFragment.newInstance("","");
@@ -70,6 +74,8 @@ public class ListNotesFragment extends Fragment {
 
         });
     }
+
+
 
     public void initView(View view) {
         LinearLayout linearLayout = view.findViewById(R.id.note_container);
