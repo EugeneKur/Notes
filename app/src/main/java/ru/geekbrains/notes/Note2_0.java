@@ -3,35 +3,40 @@ package ru.geekbrains.notes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Note implements Parcelable {
+public class Note2_0 implements Parcelable {
+
     private String nameNote;
     private String textNote;
     private String dateNote;
+    private final boolean isDone;
 
-
-
-    public Note(String nameNote, String textNote, String dateNote) {
+    public Note2_0(String nameNote, String textNote, String dateNote, boolean isDone) {
         this.nameNote = nameNote;
         this.textNote = textNote;
         this.dateNote = dateNote;
+        this.isDone = isDone;
     }
 
+    public Note2_0(String nameNote, String textNote, String dateNote) {
+        this(nameNote, textNote, dateNote, false);
+    }
 
-    protected Note(Parcel in) {
+    protected Note2_0(Parcel in) {
         nameNote = in.readString();
         textNote = in.readString();
         dateNote = in.readString();
+        isDone = in.readByte() != 0;
     }
 
-    public static final Creator<Note> CREATOR = new Creator<Note>() {
+    public static final Creator<Note2_0> CREATOR = new Creator<Note2_0>() {
         @Override
-        public Note createFromParcel(Parcel in) {
-            return new Note(in);
+        public Note2_0 createFromParcel(Parcel in) {
+            return new Note2_0(in);
         }
 
         @Override
-        public Note[] newArray(int size) {
-            return new Note[size];
+        public Note2_0[] newArray(int size) {
+            return new Note2_0[size];
         }
     };
 
@@ -39,24 +44,16 @@ public class Note implements Parcelable {
         return nameNote;
     }
 
-    public void setNameNote(String nameNote) {
-        this.nameNote = nameNote;
-    }
-
     public String getTextNote() {
         return textNote;
-    }
-
-    public void setTextNote(String textNote) {
-        this.textNote = textNote;
     }
 
     public String getDateNote() {
         return dateNote;
     }
 
-    public void setDateNote(String dateNote) {
-        this.dateNote = dateNote;
+    public boolean isDone() {
+        return isDone;
     }
 
     @Override
@@ -69,5 +66,6 @@ public class Note implements Parcelable {
         dest.writeString(nameNote);
         dest.writeString(textNote);
         dest.writeString(dateNote);
+        dest.writeByte((byte) (isDone ? 1 : 0));
     }
 }

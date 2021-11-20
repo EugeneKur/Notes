@@ -31,13 +31,13 @@ public class TextNotesFragment extends Fragment {
 
     private int position = -1;
 
-    private Note note = null;
+    private Note2_0 note = null;
 
     public TextNotesFragment() {
         // Required empty public constructor
     }
 
-    public static TextNotesFragment newInstance(Note note) {
+    public static TextNotesFragment newInstance(Note2_0 note) {
         TextNotesFragment fragment = new TextNotesFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_POSITION, note);

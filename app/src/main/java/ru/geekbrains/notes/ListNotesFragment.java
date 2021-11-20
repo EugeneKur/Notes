@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +23,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 
 public class ListNotesFragment extends Fragment {
     int currentPosition = -1;
-    private AllNotes allNotes;
-
-
-
 
     public ListNotesFragment() {
         // Required empty public constructor
@@ -38,6 +39,7 @@ public class ListNotesFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 
@@ -54,83 +56,35 @@ public class ListNotesFragment extends Fragment {
 
         initView(view);
 
-
-        Button buttonBack = view.findViewById(R.id.button_option);
-        buttonBack.setOnClickListener(v -> {
-            OptoinsFragment optoinsFragment = OptoinsFragment.newInstance("","");
-            if (isLand()) {
-                requireActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.fragment_container2, optoinsFragment)
-                        .addToBackStack(null)
-                        .commit();
-            } else {
-                requireActivity().getSupportFragmentManager()
-                        .beginTransaction()
-                        .add(R.id.fragment_container1, optoinsFragment)
-                        .addToBackStack(null)
-                        .commit();
-            }
-
-        });
     }
-
-
 
     public void initView(View view) {
-        LinearLayout linearLayout = view.findViewById(R.id.note_container);
 
-        allNotes = new AllNotes(4);
-        allNotes.addNote("1 заметка", "Текст первой заметки", "22.12.2048");
-        allNotes.addNote("2 заметка", "Текст второй заметки", "23.12.2048");
-        allNotes.addNote("3 заметка", "Текст третьей заметки", "25.12.2048");
-        allNotes.addNote("4 заметка", "Текст четвертой заметки", "26.12.2048");
+        List<Note2_0> note2_0List = Arrays.asList(
+                new Note2_0("1 заметка", "Текст первой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "22.12.2048"),
+                new Note2_0("2 заметка", "Текст второй заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "23.12.2048"),
+                new Note2_0("3 заметка", "Текст третьей заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "25.12.2048"),
+                new Note2_0("4 заметка", "Текст четвертой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048"),
+                new Note2_0("5 заметка", "Текст пятой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048"),
+                new Note2_0("6 заметка", "Текст шестой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048"),
+                new Note2_0("7 заметка", "Текст седьмой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048"),
+                new Note2_0("8 заметка", "Текст восьмой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048")
+        );
 
-        List<Note> supportList = allNotes.getNotesList();
+        RecyclerView recyclerView = getView().findViewById(R.id.recycler_view);
 
+        NotesAdapter adapter = new NotesAdapter(note2_0List);
+        adapter.setClickListener((view1, position) -> {
+            currentPosition = position;
+            Note2_0 note = note2_0List.get(currentPosition);
+            showText(note.getNameNote(), note.getTextNote(), note.getDateNote());
+        });
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
 
-        for (int i = 0; i < allNotes.getSize(); i++) {
-            Note note = supportList.get(i);
-            TextView textView = new TextView(getContext());
-
-            textView.setText(note.getNameNote());
-            textView.setTextSize(30);
-            textView.setTextColor(Color.BLACK);
-
-            final int position = i;
-
-            textView.setOnClickListener(v -> {
-                currentPosition = position;
-                showText(note.getNameNote(), note.getTextNote(), note.getDateNote());
-                updateBackground();
-
-
-            });
-            linearLayout.addView(textView);
-        }
-
-
-
-
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
     }
-
-    public AllNotes getAllNotes() {
-        return allNotes;
-    }
-
-    void updateBackground() {
-        LinearLayout linearLayout = getView().findViewById(R.id.note_container);
-        for (int i = 0; i < linearLayout.getChildCount(); i++) {
-            linearLayout.getChildAt(i).setBackgroundColor(Color.TRANSPARENT);
-
-            if (currentPosition == i) {
-                linearLayout.getChildAt(i).setBackgroundColor(Color.GRAY);
-            }
-        }
-
-    }
-
 
     void showText(String name, String text, String date) {
         if (isLand()) {
@@ -142,7 +96,7 @@ public class ListNotesFragment extends Fragment {
     }
 
     void  showTextPort (String name, String text, String date) {
-        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note(name, text, date));
+        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note2_0(name, text, date));
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container1, textNotesFragment)
@@ -152,7 +106,7 @@ public class ListNotesFragment extends Fragment {
     }
 
     void  showTextLand (String name, String text, String date) {
-        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note(name, text, date));
+        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note2_0(name, text, date));
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container2, textNotesFragment)

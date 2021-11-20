@@ -10,7 +10,7 @@
 
 <LinearLayout
 
-    android:background="#00FF00"
+    android:background="@color/second_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -25,7 +25,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:background="@color/purple_200"
+            android:background="@color/first_color"
             app:title="@string/app_name"
             app:subtitle="Main"
             android:layout_height="?attr/actionBarSize">
@@ -39,15 +39,14 @@
         android:orientation="horizontal">
         <FrameLayout
             android:id="@+id/fragment_container1"
-            android:layout_margin="3pt"
-            android:background="#00FFFF"
+            android:layout_margin="2pt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="2"/>
         <FrameLayout
             android:id="@+id/fragment_container2"
-            android:layout_margin="3pt"
-            android:background="#8811FF"
+            android:layout_margin="2pt"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
@@ -63,6 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/second_color"
         app:headerLayout="@layout/header"
         app:menu="@menu/drawer"
         >

@@ -11,7 +11,7 @@
 
 <LinearLayout
 
-    android:background="#00FF00"
+    android:background="@color/second_color"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -21,12 +21,13 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:background="@color/purple_200"
+            android:background="@color/first_color"
             app:title="@string/app_name"
             app:subtitle="Main"
             android:layout_height="?attr/actionBarSize">
@@ -36,8 +37,7 @@
 
     <FrameLayout
         android:id="@+id/fragment_container1"
-        android:layout_margin="10pt"
-        android:background="#00FFFF"
+        android:layout_margin="2pt"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -52,6 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/second_color"
         app:headerLayout="@layout/header"
         app:menu="@menu/drawer"
         >
