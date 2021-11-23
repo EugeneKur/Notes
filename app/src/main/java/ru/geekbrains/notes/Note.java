@@ -3,40 +3,40 @@ package ru.geekbrains.notes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Note2_0 implements Parcelable {
+public class Note implements Parcelable {
 
     private String nameNote;
     private String textNote;
     private String dateNote;
     private final boolean isDone;
 
-    public Note2_0(String nameNote, String textNote, String dateNote, boolean isDone) {
+    public Note(String nameNote, String textNote, String dateNote, boolean isDone) {
         this.nameNote = nameNote;
         this.textNote = textNote;
         this.dateNote = dateNote;
         this.isDone = isDone;
     }
 
-    public Note2_0(String nameNote, String textNote, String dateNote) {
+    public Note(String nameNote, String textNote, String dateNote) {
         this(nameNote, textNote, dateNote, false);
     }
 
-    protected Note2_0(Parcel in) {
+    protected Note(Parcel in) {
         nameNote = in.readString();
         textNote = in.readString();
         dateNote = in.readString();
         isDone = in.readByte() != 0;
     }
 
-    public static final Creator<Note2_0> CREATOR = new Creator<Note2_0>() {
+    public static final Creator<Note> CREATOR = new Creator<Note>() {
         @Override
-        public Note2_0 createFromParcel(Parcel in) {
-            return new Note2_0(in);
+        public Note createFromParcel(Parcel in) {
+            return new Note(in);
         }
 
         @Override
-        public Note2_0[] newArray(int size) {
-            return new Note2_0[size];
+        public Note[] newArray(int size) {
+            return new Note[size];
         }
     };
 

@@ -23,7 +23,7 @@
         android:id="@+id/action_back"
         android:title="Закрыть"
         app:showAsAction="collapseActionView"
-        android:orderInCategory="20"
+        android:orderInCategory="50"
         />
     <item
         android:id="@+id/action_font_style"
@@ -49,5 +49,6 @@
         app:showAsAction="collapseActionView"
         android:orderInCategory="19"
         />
+
 
 </menu>
