@@ -1,36 +1,29 @@
 package ru.geekbrains.notes;
 
-import android.content.DialogInterface;
+import android.app.Activity;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 
 
 public class ListNotesFragment extends Fragment {
     int currentPosition = -1;
+
+    private NoteSource source;
+    private NotesAdapter adapter;
 
     public ListNotesFragment() {
         // Required empty public constructor
@@ -46,7 +39,7 @@ public class ListNotesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
         return inflater.inflate(R.layout.fragment_list_notes, container, false);
     }
 
@@ -58,25 +51,62 @@ public class ListNotesFragment extends Fragment {
 
     }
 
-    public void initView(View view) {
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = requireActivity().getMenuInflater();
+        inflater.inflate(R.menu.note_menu, menu);
+    }
 
-        List<Note2_0> note2_0List = Arrays.asList(
-                new Note2_0("1 заметка", "Текст первой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "22.12.2048"),
-                new Note2_0("2 заметка", "Текст второй заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "23.12.2048"),
-                new Note2_0("3 заметка", "Текст третьей заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "25.12.2048"),
-                new Note2_0("4 заметка", "Текст четвертой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048"),
-                new Note2_0("5 заметка", "Текст пятой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048"),
-                new Note2_0("6 заметка", "Текст шестой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048"),
-                new Note2_0("7 заметка", "Текст седьмой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048"),
-                new Note2_0("8 заметка", "Текст восьмой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "26.12.2048")
-        );
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_delete_note){
+            source.deleteNote(adapter.getMenuPosition());
+            adapter.notifyItemRemoved(adapter.getMenuPosition());
+            return true;
+        } else if (item.getItemId() == R.id.action_update){
+            source.updateNote(adapter.getMenuPosition(), new Note("Обновленная заметка", "Текст обновленной заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "22.12.2048"));
+            adapter.notifyItemChanged(adapter.getMenuPosition());
+            return true;
+        }
+
+        return super.onContextItemSelected(item);
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.list_notes_fragment_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_add){
+            source.addNote(
+                    new Note("Новая заметка", "Текст новой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "22.12.2048")
+            );
+            adapter.notifyItemInserted(source.size()-1);
+            return true;
+        } else if (item.getItemId() == R.id.action_clear){
+            int size = source.size();
+            source.clearNotes();
+            adapter.notifyItemRangeRemoved(0, size);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void initView(View view) {
 
         RecyclerView recyclerView = getView().findViewById(R.id.recycler_view);
 
-        NotesAdapter adapter = new NotesAdapter(note2_0List);
+        source = new NoteSourceImpl(getContext());
+
+        adapter = new NotesAdapter(this, source);
         adapter.setClickListener((view1, position) -> {
             currentPosition = position;
-            Note2_0 note = note2_0List.get(currentPosition);
+            Note note = source.getNote(currentPosition);
             showText(note.getNameNote(), note.getTextNote(), note.getDateNote());
         });
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -96,7 +126,7 @@ public class ListNotesFragment extends Fragment {
     }
 
     void  showTextPort (String name, String text, String date) {
-        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note2_0(name, text, date));
+        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note(name, text, date));
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container1, textNotesFragment)
@@ -106,7 +136,7 @@ public class ListNotesFragment extends Fragment {
     }
 
     void  showTextLand (String name, String text, String date) {
-        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note2_0(name, text, date));
+        TextNotesFragment textNotesFragment = TextNotesFragment.newInstance(new Note(name, text, date));
         requireActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_container2, textNotesFragment)

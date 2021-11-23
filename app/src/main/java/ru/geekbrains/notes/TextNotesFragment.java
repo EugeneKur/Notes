@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,11 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,13 +26,13 @@ public class TextNotesFragment extends Fragment {
 
     private int position = -1;
 
-    private Note2_0 note = null;
+    private Note note = null;
 
     public TextNotesFragment() {
         // Required empty public constructor
     }
 
-    public static TextNotesFragment newInstance(Note2_0 note) {
+    public static TextNotesFragment newInstance(Note note) {
         TextNotesFragment fragment = new TextNotesFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_POSITION, note);
@@ -107,6 +102,11 @@ public class TextNotesFragment extends Fragment {
             menuItemRemind.setVisible(true);
         }
         super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

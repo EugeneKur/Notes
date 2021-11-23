@@ -17,14 +17,14 @@ import android.widget.TextView;
 public class ChildTextFragment extends Fragment {
 
     private static final String ARG_POSITION = "position_arg";
-    private Note2_0 note = null;
+    private Note note = null;
 
 
     public ChildTextFragment() {
         // Required empty public constructor
     }
 
-    public static ChildTextFragment newInstance(Note2_0 note) {
+    public static ChildTextFragment newInstance(Note note) {
         ChildTextFragment fragment = new ChildTextFragment();
         Bundle args = new Bundle();
         args.putParcelable(ARG_POSITION, note);
