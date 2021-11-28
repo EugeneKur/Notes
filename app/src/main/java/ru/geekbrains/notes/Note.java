@@ -5,10 +5,14 @@ import android.os.Parcelable;
 
 public class Note implements Parcelable {
 
+    private String id;
     private String nameNote;
     private String textNote;
     private String dateNote;
-    private final boolean isDone;
+    private boolean isDone;
+
+    public Note() {
+    }
 
     public Note(String nameNote, String textNote, String dateNote, boolean isDone) {
         this.nameNote = nameNote;
@@ -19,6 +23,14 @@ public class Note implements Parcelable {
 
     public Note(String nameNote, String textNote, String dateNote) {
         this(nameNote, textNote, dateNote, false);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     protected Note(Parcel in) {

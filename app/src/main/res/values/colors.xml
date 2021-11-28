@@ -8,7 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="optionTextColor">#1216CC</color>
-    <color name="second_color">#9D331F</color>
-    <color name="first_color">#500805</color>
-    <color name="third_color">#BC6D4F</color>
+    <color name="second_color">#F5F5F4</color>
+    <color name="first_color">#C4D4D2</color>
+    <color name="third_color">#FFFFFF</color>
+    <color name="first_text_color">#0B2D2A</color>
+    <color name="second_text_color">#174F4B</color>
 </resources>
