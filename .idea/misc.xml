@@ -7,16 +7,18 @@
         <entry key="..\:/Android/Notes/app/src/main/res/layout/activity_main.xml" value="0.17119565217391305" />
         <entry key="..\:/Android/Notes/app/src/main/res/layout/fragment_about.xml" value="0.20199275362318841" />
         <entry key="..\:/Android/Notes/app/src/main/res/layout/fragment_child_text.xml" value="0.20199275362318841" />
-        <entry key="..\:/Android/Notes/app/src/main/res/layout/fragment_list_notes.xml" value="0.4" />
+        <entry key="..\:/Android/Notes/app/src/main/res/layout/fragment_list_notes.xml" value="0.3255208333333333" />
         <entry key="..\:/Android/Notes/app/src/main/res/layout/fragment_optoins.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Notes/app/src/main/res/layout/fragment_text_notes.xml" value="0.176" />
         <entry key="..\:/Android/Notes/app/src/main/res/layout/header.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Notes/app/src/main/res/layout/recycler_view_item.xml" value="0.25416666666666665" />
-        <entry key="..\:/Android/Notes/app/src/main/res/layout/recycler_view_item_layout.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android/Notes/app/src/main/res/layout/recycler_view_item_layout.xml" value="0.4" />
         <entry key="..\:/Android/Notes/app/src/main/res/menu/card_menu.xml" value="0.25416666666666665" />
-        <entry key="..\:/Android/Notes/app/src/main/res/menu/drawer.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android/Notes/app/src/main/res/menu/drawer.xml" value="0.536" />
+        <entry key="..\:/Android/Notes/app/src/main/res/menu/list_notes_fragment_menu.xml" value="0.13020833333333334" />
         <entry key="..\:/Android/Notes/app/src/main/res/menu/main.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Notes/app/src/main/res/menu/menu_list_notes_fragment.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android/Notes/app/src/main/res/menu/note_menu.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/ewkur/Notes/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout-land/activity_main.xml" value="0.152" />
         <entry key="..\:/Users/ewkur/Notes/app/src/main/res/layout/activity_main.xml" value="0.176" />

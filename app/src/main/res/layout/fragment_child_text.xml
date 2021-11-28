@@ -10,6 +10,7 @@
     <TextView
         android:id="@+id/textNotes"
         android:textSize="30sp"
+        android:textColor="@color/second_text_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"

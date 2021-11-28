@@ -1,6 +1,8 @@
 package ru.geekbrains.notes;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -17,6 +19,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.UUID;
 
 
 public class ListNotesFragment extends Fragment {
@@ -83,9 +87,10 @@ public class ListNotesFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_add){
-            source.addNote(
-                    new Note("Новая заметка", "Текст новой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "22.12.2048")
-            );
+            Note note = new Note("Новая заметка", "Текст новой заметки. Текст. Текст. Текст. Текст. Текст. Текст.", "22.12.2048");
+
+            note.setId(UUID.randomUUID().toString());
+            source.addNote(note);
             adapter.notifyItemInserted(source.size()-1);
             return true;
         } else if (item.getItemId() == R.id.action_clear){
@@ -101,7 +106,12 @@ public class ListNotesFragment extends Fragment {
 
         RecyclerView recyclerView = getView().findViewById(R.id.recycler_view);
 
-        source = new NoteSourceImpl(getContext());
+        //source = new NoteSourceImpl(getContext());
+        //source = new PreferencesNoteSource(getActivity().getPreferences(Context.MODE_PRIVATE));
+
+        source = new FirebaseNoteSource(() -> {
+            adapter.notifyDataSetChanged();
+        });
 
         adapter = new NotesAdapter(this, source);
         adapter.setClickListener((view1, position) -> {
